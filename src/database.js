@@ -7,6 +7,5 @@ async function connectDB() {
             useNewUrlParser: true,
         }
     );
-    console.log('Database connected');
 }
 module.exports = { connectDB };

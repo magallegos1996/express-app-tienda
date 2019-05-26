@@ -12,4 +12,8 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json()); //con este metodo nos ayudará a que el servidor pueda entender los datos que vengan desde el navegador. Se tomarán estos datos con req.body
 
+//Routes
+app.use(require('./routes/productos.routes'));
+app.use(require('./routes/categoria.routes'));
+
 module.exports = app;
