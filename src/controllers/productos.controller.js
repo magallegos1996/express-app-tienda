@@ -5,7 +5,7 @@ const productoController = {};
 
 productoController.getProductos = async (req, res) =>  {
     const productos = await Producto.find();
-    res.send(productos);
+    res.json(productos);
 };
 productoController.crearProducto = async (req, res) => {
     const nuevoProducto = new Producto(req.body);
@@ -14,23 +14,32 @@ productoController.crearProducto = async (req, res) => {
     if(categoria){
        categoria.productos.push(nuevoProducto);
        categoria.save();
-       res.send(nuevoProducto);
+       res.json(nuevoProducto);
     }
-
 };
-productoController.getProductoByNombre = ()=>{
+productoController.getProductoByNombre = (req, res)=>{
     const nombreProducto = req.param.nombre;
     const producto = new Producto.find({nombre: nombreProducto});
-    res.send(producto);
+    res.json(producto);
 };
-productoController.getProductoById = ()=>{
+productoController.getProductoById = async (req, res)=>{
     const idProducto = req.param.id;
-    const producto = new Producto.find({_id: idProducto});
-    res.send(producto);
+    const producto = await new Producto.find({_id: idProducto});
+    res.json(producto);
 };
-productoController.eliminarProducto = ()=>{
+productoController.eliminarProducto = async (req, res)=>{
+  await Producto.findByIdAndRemove(req.params.id);
+  res.json({status: 'Producto eliminado'});
 };
-productoController.updateProducto = ()=>{
+productoController.updateProducto = async (req, res)=>{
+    const producto = {
+        nombre: req.body.nombre,
+        precio: req.body.precio,
+        imagen: req.body.imagen,
+        descripcion: req.body.descripcion
+    };
+    await Producto.findByIdAndUpdate(req.params.id, {$set: producto});
+    res.json({status: 'Producto Actualizado'})
 };
 
 module.exports = productoController;
