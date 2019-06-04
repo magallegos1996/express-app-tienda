@@ -34,6 +34,13 @@ categoriaController.eliminarCategoria = async (req, res)=>{
         })
     });
 };
+categoriaController.updateCategoria = async (req, res)=>{
+    const categoria = {
+        nombre: req.body.nombre
+    };
+    await Categoria.findByIdAndUpdate(req.params.id, {$set: categoria} );
+    res.json({status: 'Categoria Actualizada'})
+};
 
 module.exports = categoriaController;
 

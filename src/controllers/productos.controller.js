@@ -31,10 +31,14 @@ productoController.updateProducto = async (req, res)=>{
         precio: req.body.precio,
         imagen: req.body.imagen,
         descripcion: req.body.descripcion,
-        categoria: req.body.categoria
     };
     await Producto.findByIdAndUpdate(req.params.id, {$set: producto});
     res.json(producto);
+};
+productoController.deleteProducto = async (req, res) =>{
+    const producto = await Producto.findByIdAndDelete(req.params.id);
+    await Categoria.findByIdAndUpdate(producto.categoria, {$pull: {productos: producto.id}});
+    res.json({status: 'Producto Eliminado'});
 };
 
 module.exports = productoController;
