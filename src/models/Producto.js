@@ -9,7 +9,6 @@ const schemaProducto = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'CategoriaProducto'
     },
-    //categoria_id: {type: Schema.Types.ObjectId, ref: 'CategoriaProducto'},
 });
 
 module.exports = model('Producto', schemaProducto);

@@ -31,10 +31,8 @@ categoriaController.eliminarCategoria = async (req, res)=>{
             if(err) res.json({status: 'Error'});
             categoria.remove();
             res.json({status: 'Categoria Eliminada'});
-
         })
     });
-    // res.json({staus: 'Categoria Eliminada'});
 };
 
 module.exports = categoriaController;
