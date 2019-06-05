@@ -7,4 +7,5 @@ const schemaUsuario = new Schema({
     password: {type: String, required: true},
     correoElectronico: {type: String, required: true},
 });
+
 module.exports = model('Usuario', schemaUsuario);
