@@ -8,8 +8,12 @@ productoController.getProductos = async (req,res)=>{
     res.json(productos);
 };
 productoController.getProductoById = async (req, res)=>{
-    const producto = await Producto.findById(req.params.id);
-    res.json(producto);
+    try{
+        const producto = await Producto.findById(req.params.id);
+        res.json(producto);
+    }catch (e) {
+        res.json({status: 'No se encontró ningún producto'})
+    }
 };
 productoController.crearProducto = async (req, res)=>{
     const nuevoProducto = new Producto({

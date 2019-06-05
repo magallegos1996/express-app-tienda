@@ -12,7 +12,7 @@ categoriaController.getCategoriaByNombre = async (req, res)=>{
     try{
         const categoria = await Categoria.findOne({nombre: req.params.nombre});
         res.json(categoria);
-    } catch (e) {res.json({status: 'Error'})}
+    } catch (e) {res.json({status: 'No existe esa categoría'})}
 };
 categoriaController.crearCategoria = async (req, res)=>{
     const nuevaCategoria = new Categoria(req.body);

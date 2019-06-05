@@ -15,5 +15,6 @@ app.use(express.json()); //con este metodo nos ayudará a que el servidor pueda 
 //Routes
 app.use(require('./routes/productos.routes'));
 app.use(require('./routes/categoria.routes'));
+app.use(require('./routes/usuario.routes'));
 
 module.exports = app;
